@@ -47,7 +47,7 @@ The Feedback Feature App serves as a central hub for users to connect with stake
 
 1. Clone the repository:
    ```bash
-   git clone https://github.com/your-repository/feedback-feature-app.git
+   git clone https://github.com/shashankaz/feedback-feature-app.git
    ```
 2. Navigate to the project directory:
    ```bash
