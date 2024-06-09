@@ -1,70 +1,65 @@
-# Getting Started with Create React App
+# Feedback Feature App
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+## Introduction
 
-## Available Scripts
+The Feedback Feature App serves as a central hub for users to connect with stakeholders. It offers a range of options, allowing users to effortlessly reach out for different purposes. Users can utilize this feature to inquire about queries, report any encountered bugs, propose new features, or share their valuable feedback.
 
-In the project directory, you can run:
+## Features
 
-### `npm start`
+### Opened FAB
+- **Configurable options per page** (show all, some, or no FAB features).
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in your browser.
+#### Report an Issue
+- **Logged In User**: Title, "Choose a section" (Dropdown, pre-selected), "Describe the issue in detail" (Text Box, Mandatory), Submit button.
+- **Logged Out User**: Same as above, plus email field (Mandatory).
 
-The page will reload when you make changes.\
-You may also see any lint errors in the console.
+#### Share Feedback
+- **Logged In User**: Text Box (Mandatory), Send anonymously checkbox, Submit button.
+- **Logged Out User**: Text Box (Mandatory), Email field (Mandatory), Submit button.
 
-### `npm test`
+#### Give Suggestion
+- **Logged In User**: Title, Dropdown, Text Box (Mandatory), Submit button.
+- **Logged Out User**: Same as above, plus email field (Mandatory).
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+#### Contact Us
+- **Logged In User**: Title, Name (Mandatory), "What would you like to ask?" (Text Box, Mandatory), Submit button.
+- **Logged Out User**: Same as above, plus Email and Mobile Number fields (Mandatory), Submit button (disabled until mandatory fields are filled).
 
-### `npm run build`
+### Text Box Field
+- Vertical scroll bar, maximum letter limit (1000).
+- File attachment (max 2 images, each 50*50px).
 
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
+### Check Box
+- For "Share Feedback" option: send feedback anonymously checkbox.
 
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
+### User Login States
+- **Logged In User**: Email stored and associated with submission.
+- **Non-Logged In User**: Optional email field, invalid email error message.
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+### Thanks Message
+- Pop-up message above the FAB button post-submission.
 
-### `npm run eject`
+### Rate Us Card
+- Appears after completion or prompt for rating.
+- Star selection activates submit button.
 
-**Note: this is a one-way operation. Once you `eject`, you can't go back!**
+## Installation
 
-If you aren't satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
+1. Clone the repository:
+   ```bash
+   git clone https://github.com/your-repository/feedback-feature-app.git
+   ```
+2. Navigate to the project directory:
+   ```bash
+   cd feedback-feature-app
+   ```
+3. Install dependencies:
+   ```bash
+   npm install
+   ```
+4. Start the development server:
+   ```bash
+   npm start
+   ```
 
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you're on your own.
-
-You don't have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn't feel obligated to use this feature. However we understand that this tool wouldn't be useful if you couldn't customize it when you are ready for it.
-
-## Learn More
-
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
-
-To learn React, check out the [React documentation](https://reactjs.org/).
-
-### Code Splitting
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/code-splitting](https://facebook.github.io/create-react-app/docs/code-splitting)
-
-### Analyzing the Bundle Size
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size](https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size)
-
-### Making a Progressive Web App
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app](https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app)
-
-### Advanced Configuration
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/advanced-configuration](https://facebook.github.io/create-react-app/docs/advanced-configuration)
-
-### Deployment
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/deployment](https://facebook.github.io/create-react-app/docs/deployment)
-
-### `npm run build` fails to minify
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
+---

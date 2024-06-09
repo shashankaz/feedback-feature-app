@@ -1,0 +1,140 @@
+.main {
+  height: 404px;
+  position: fixed;
+  right: 32px;
+  bottom: 32px;
+  display: flex;
+  flex-direction: column;
+  align-items: end;
+}
+
+.btn {
+  height: 92px;
+  position: fixed;
+  right: 32px;
+  bottom: 32px;
+  display: flex;
+  align-items: end;
+  justify-content: end;
+}
+
+.btn > .fab {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 60px;
+  width: 60px;
+  border-radius: 50%;
+  border: none;
+  background-color: transparent;
+  cursor: pointer;
+}
+
+.vertical {
+  height: 312px;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+}
+
+.vertical button {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 60px;
+  width: 60px;
+  border-radius: 50%;
+  border: none;
+  background-color: transparent;
+  cursor: pointer;
+}
+
+#issue {
+  display: flex;
+  gap: 16px;
+  align-items: center;
+  justify-content: end;
+  cursor: pointer;
+  animation: translateYAnimation 0.5s ease-out;
+}
+
+#feedback {
+  display: flex;
+  gap: 16px;
+  align-items: center;
+  justify-content: end;
+  cursor: pointer;
+  animation: translateYAnimation 0.5s ease-out;
+}
+
+#suggestion {
+  display: flex;
+  gap: 16px;
+  align-items: center;
+  justify-content: end;
+  cursor: pointer;
+  animation: translateYAnimation 0.5s ease-out;
+}
+
+#contact {
+  display: flex;
+  gap: 16px;
+  align-items: center;
+  justify-content: end;
+  cursor: pointer;
+  animation: translateYAnimation 0.5s ease-out;
+}
+
+p {
+  padding: 8px 16px;
+  background-color: #f8f8f8;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  font-size: 18px;
+  line-height: 18px;
+  font-weight: 500;
+  text-align: center;
+}
+
+.horizontal {
+  position: fixed;
+  right: 108px;
+  bottom: 32px;
+  display: flex;
+  gap: 16px;
+}
+
+.horizontal button {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 60px;
+  width: 60px;
+  border-radius: 50%;
+  border: none;
+  background-color: transparent;
+  cursor: pointer;
+}
+
+.section-av {
+  position: fixed;
+  bottom: 104px;
+  right: 32px;
+}
+
+@keyframes translateYAnimation {
+  from {
+    transform: translateY(100%);
+    opacity: 0;
+  }
+  to {
+    transform: translateY(0);
+    opacity: 1;
+  }
+}
+
+@media screen and (max-width: 425px) {
+  .main {
+    display: none;
+  }
+}
