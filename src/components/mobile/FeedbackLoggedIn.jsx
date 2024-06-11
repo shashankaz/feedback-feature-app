@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import "../../assets/styles/index.css";
 import closeActionSmall from "../../assets/images/closeActionSmall.svg";
 import contactSmall from "../../assets/images/contactSmall.svg";
@@ -15,6 +15,25 @@ import {
 } from "../../redux/uiSlice";
 
 const FeedbackLoggedIn = () => {
+  const [message, setMessage] = useState("");
+  const [submitted, setSubmitted] = useState(false);
+
+  const handleMessage = (event) => {
+    const inputText = event.target.value;
+    const words = inputText.trim().split(/\s+/);
+    if (words.length <= 1000) {
+      setMessage(inputText);
+    }
+  };
+
+  const onSubmit = (e) => {
+    e.preventDefault();
+    if (message) {
+      setMessage("");
+      setSubmitted(true);
+    }
+  };
+
   const { navHorizontal } = useSelector((state) => state.ui);
   const dispatch = useDispatch();
 
@@ -37,6 +56,20 @@ const FeedbackLoggedIn = () => {
   const handleContactForm = () => {
     dispatch(showContactForm());
   };
+
+  useEffect(() => {
+    if (submitted) {
+      const timer = setTimeout(() => {
+        setSubmitted(false);
+      }, 5000);
+
+      return () => clearTimeout(timer);
+    }
+  }, [submitted]);
+
+  if (submitted) {
+    return <div className="submitted-small">Thanks for your valuable feedback!</div>;
+  }
 
   return (
     <main>
@@ -70,7 +103,12 @@ const FeedbackLoggedIn = () => {
             <div className="section-small-2">
               <div className="section-small-4">
                 <div className="section-small-5">
-                  <textarea placeholder="Write here..." required></textarea>
+                  <textarea
+                    value={message}
+                    onChange={handleMessage}
+                    placeholder="Write here..."
+                    required
+                  ></textarea>
                   <div
                     className="section-small-7"
                     style={{
@@ -102,7 +140,18 @@ const FeedbackLoggedIn = () => {
                   </div>
                 </div>
                 <div className="section-small-6">
-                  <button>Submit</button>
+                  <button
+                    onClick={onSubmit}
+                    type="submit"
+                    style={{
+                      cursor: message ? "pointer" : "not-allowed",
+                      backgroundColor: message
+                        ? "rgba(15, 15, 15, 1)"
+                        : "rgba(15, 15, 15, 0.6)",
+                    }}
+                  >
+                    Submit
+                  </button>
                 </div>
               </div>
             </div>

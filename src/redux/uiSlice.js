@@ -65,6 +65,9 @@ const uiSlice = createSlice({
     toggleLogin: (state) => {
       state.isLoggedIn = !state.isLoggedIn;
     },
+    toggleFab: (state) => {
+      state.open = !state.open;
+    },
   },
 });
 
@@ -76,6 +79,7 @@ export const {
   showSuggestionForm,
   showContactForm,
   toggleLogin,
+  toggleFab,
 } = uiSlice.actions;
 
 export default uiSlice.reducer;

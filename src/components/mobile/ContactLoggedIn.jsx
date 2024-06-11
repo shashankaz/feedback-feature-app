@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import "../../assets/styles/index.css";
 import closeActionSmall from "../../assets/images/closeActionSmall.svg";
 import contactSmall from "../../assets/images/contactSmall.svg";
@@ -15,10 +15,25 @@ import {
 } from "../../redux/uiSlice";
 
 const ContactLoggedIn = () => {
-  const [inputValue, setInputValue] = useState("");
+  const [name, setName] = useState("");
+  const [message, setMessage] = useState("");
+  const [submitted, setSubmitted] = useState(false);
 
-  const handleChange = (event) => {
-    setInputValue(event.target.value);
+  const handleMessage = (event) => {
+    const inputText = event.target.value;
+    const words = inputText.trim().split(/\s+/);
+    if (words.length <= 1000) {
+      setMessage(inputText);
+    }
+  };
+
+  const onSubmit = (e) => {
+    e.preventDefault();
+    if (name && message) {
+      setName("");
+      setMessage("");
+      setSubmitted(true);
+    }
   };
 
   const { navHorizontal } = useSelector((state) => state.ui);
@@ -43,6 +58,25 @@ const ContactLoggedIn = () => {
   const handleContactForm = () => {
     dispatch(showContactForm());
   };
+
+  useEffect(() => {
+    if (submitted) {
+      const timer = setTimeout(() => {
+        setSubmitted(false);
+      }, 5000);
+
+      return () => clearTimeout(timer);
+    }
+  }, [submitted]);
+
+  if (submitted) {
+    return (
+      <div className="submitted-small">
+        Thanks for reaching out to us! <br /> We will get back to you as soon as
+        possible
+      </div>
+    );
+  }
 
   return (
     <main>
@@ -79,15 +113,22 @@ const ContactLoggedIn = () => {
                   <div className="section-small-5">
                     <div className="section-small-7">
                       <h2>Your Name</h2>
-                      <input type="text" placeholder="Enter your Name" />
+                      <input
+                        value={name}
+                        onChange={(e) => {
+                          setName(e.target.value);
+                        }}
+                        type="text"
+                        placeholder="Enter your Name"
+                      />
                     </div>
                     <div className="section-small-7">
                       <h2>
                         What would you like to ask? <span>*</span>
                       </h2>
                       <textarea
-                        value={inputValue}
-                        onChange={handleChange}
+                        value={message}
+                        onChange={handleMessage}
                         placeholder="Write here..."
                         required
                       />
@@ -95,8 +136,13 @@ const ContactLoggedIn = () => {
                   </div>
                   <div className="section-small-6">
                     <button
+                      onClick={onSubmit}
                       style={{
-                        cursor: inputValue ? "pointer" : "not-allowed",
+                        cursor: name && message ? "pointer" : "not-allowed",
+                        backgroundColor:
+                          name && message
+                            ? "rgba(15, 15, 15, 1)"
+                            : "rgba(15, 15, 15, 0.6)",
                       }}
                     >
                       Submit

@@ -24,7 +24,12 @@ import {
   showContactForm,
 } from "../redux/uiSlice";
 
-const Fab = () => {
+const Fab = ({
+  issueValidate,
+  feedbackValidate,
+  suggestionValidate,
+  contactValidate,
+}) => {
   const {
     open,
     navVertical,
@@ -65,70 +70,86 @@ const Fab = () => {
     <div className="main">
       {navVertical && (
         <div className="vertical">
-          <div
-            id="issue"
-            onClick={() => {
-              handleVertical();
-              handleIssueForm();
-            }}
-          >
-            <p>Report an Issue</p>
-            <button>
-              <img src={issue} alt="" />
-            </button>
-          </div>
-          <div
-            id="feedback"
-            onClick={() => {
-              handleVertical();
-              handleFeedbackForm();
-            }}
-          >
-            <p>Share Feedback</p>
-            <button>
-              <img src={feedback} alt="" />
-            </button>
-          </div>
-          <div
-            id="suggestion"
-            onClick={() => {
-              handleVertical();
-              handleSuggestionForm();
-            }}
-          >
-            <p>Give Suggestion</p>
-            <button>
-              <img src={suggestion} alt="" />
-            </button>
-          </div>
-          <div
-            id="contact"
-            onClick={() => {
-              handleVertical();
-              handleContactForm();
-            }}
-          >
-            <p>Contact Us</p>
-            <button>
-              <img src={contact} alt="" />
-            </button>
-          </div>
+          {issueValidate && (
+            <div
+              id="issue"
+              onClick={() => {
+                handleVertical();
+                handleIssueForm();
+              }}
+            >
+              <p>Report an Issue</p>
+              <button>
+                <img src={issue} alt="" />
+              </button>
+            </div>
+          )}
+          {feedbackValidate && (
+            <div
+              id="feedback"
+              onClick={() => {
+                handleVertical();
+                handleFeedbackForm();
+              }}
+            >
+              <p>Share Feedback</p>
+              <button>
+                <img src={feedback} alt="" />
+              </button>
+            </div>
+          )}
+          {suggestionValidate && (
+            <div
+              id="suggestion"
+              onClick={() => {
+                handleVertical();
+                handleSuggestionForm();
+              }}
+            >
+              <p>Give Suggestion</p>
+              <button>
+                <img src={suggestion} alt="" />
+              </button>
+            </div>
+          )}
+          {contactValidate && (
+            <div
+              id="contact"
+              onClick={() => {
+                handleVertical();
+                handleContactForm();
+              }}
+            >
+              <p>Contact Us</p>
+              <button>
+                <img src={contact} alt="" />
+              </button>
+            </div>
+          )}
         </div>
       )}
       {navHorizontal && (
         <div className="horizontal">
-          <button onClick={handleContactForm}>
-            <img src={contact} alt="" />
-          </button>
-          <button onClick={handleSuggestionForm}>
-            <img src={suggestion} alt="" />
-          </button>
-          <button onClick={handleFeedbackForm}>
-            <img src={feedback} alt="" />
-          </button>
-          <button onClick={handleIssueForm}>
-            <img src={issue} alt="" />
-          </button>
+          {contactValidate && (
+            <button onClick={handleContactForm}>
+              <img src={contact} alt="" />
+            </button>
+          )}
+          {suggestionValidate && (
+            <button onClick={handleSuggestionForm}>
+              <img src={suggestion} alt="" />
+            </button>
+          )}
+          {feedbackValidate && (
+            <button onClick={handleFeedbackForm}>
+              <img src={feedback} alt="" />
+            </button>
+          )}
+          {issueValidate && (
+            <button onClick={handleIssueForm}>
+              <img src={issue} alt="" />
+            </button>
+          )}
         </div>
       )}
       <div className="section-av">

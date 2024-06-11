@@ -1,12 +1,57 @@
-import React, { useState } from "react";
-import "../../assets/styles/index.css"
+import React, { useEffect, useState } from "react";
+import "../../assets/styles/index.css";
 
 const ContactNotLoggedIn = () => {
-  const [inputValue, setInputValue] = useState("");
+  const [name, setName] = useState("");
+  const [email, setEmail] = useState("");
+  const [phone, setPhone] = useState("");
+  const [message, setMessage] = useState("");
+  const [submitted, setSubmitted] = useState(false);
 
-  const handleChange = (event) => {
-    setInputValue(event.target.value);
+  const handleMessage = (event) => {
+    const inputText = event.target.value;
+    const words = inputText.trim().split(/\s+/);
+    if (words.length <= 1000) {
+      setMessage(inputText);
+    }
   };
+
+  const handlePhone = (e) => {
+    const value = e.target.value;
+    if (value.length <= 10) {
+      setPhone(value);
+    }
+  };
+
+  const onSubmit = (e) => {
+    e.preventDefault();
+    if (name && email && phone && message) {
+      setName("");
+      setEmail("");
+      setPhone("");
+      setMessage("");
+      setSubmitted(true);
+    }
+  };
+
+  useEffect(() => {
+    if (submitted) {
+      const timer = setTimeout(() => {
+        setSubmitted(false);
+      }, 5000);
+
+      return () => clearTimeout(timer);
+    }
+  }, [submitted]);
+
+  if (submitted) {
+    return (
+      <div className="submitted">
+        Thanks for reaching out to us! <br /> We will get back to you as soon as
+        possible
+      </div>
+    );
+  }
 
   return (
     <div className="contact">
@@ -25,13 +70,25 @@ const ContactNotLoggedIn = () => {
                     <h2>
                       Your Name <span>*</span>
                     </h2>
-                    <input type="text" placeholder="Enter your Name" required />
+                    <input
+                      value={name}
+                      onChange={(e) => {
+                        setName(e.target.value);
+                      }}
+                      type="text"
+                      placeholder="Enter your Name"
+                      required
+                    />
                   </div>
                   <div className="section-7">
                     <h2>
                       Enter your Email <span>*</span>
                     </h2>
                     <input
+                      value={email}
+                      onChange={(e) => {
+                        setEmail(e.target.value);
+                      }}
                       type="email"
                       placeholder="Enter your Email"
                       required
@@ -39,15 +96,21 @@ const ContactNotLoggedIn = () => {
                   </div>
                   <div className="section-7">
                     <h2>Enter your Mobile Number</h2>
-                    <input type="number" placeholder="Enter your Number" />
+                    <input
+                      value={phone}
+                      onChange={handlePhone}
+                      max={9999999999}
+                      type="number"
+                      placeholder="Enter your Number"
+                    />
                   </div>
                   <div className="section-7">
                     <h2>
                       What would you like to ask? <span>*</span>
                     </h2>
                     <textarea
-                      value={inputValue}
-                      onChange={handleChange}
+                      value={message}
+                      onChange={handleMessage}
                       placeholder="Write here..."
                       required
                     />
@@ -55,8 +118,15 @@ const ContactNotLoggedIn = () => {
                 </div>
                 <div className="section-6">
                   <button
+                    onClick={onSubmit}
+                    type="submit"
                     style={{
-                      cursor: inputValue ? "pointer" : "not-allowed",
+                      cursor:
+                        name && email && message ? "pointer" : "not-allowed",
+                      backgroundColor:
+                        name && email && message
+                          ? "rgba(15, 15, 15, 1)"
+                          : "rgba(15, 15, 15, 0.6)",
                     }}
                   >
                     Submit

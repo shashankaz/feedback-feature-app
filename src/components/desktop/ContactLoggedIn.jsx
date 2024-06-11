@@ -1,12 +1,46 @@
-import React, { useState } from "react";
-import "../../assets/styles/index.css"
+import React, { useEffect, useState } from "react";
+import "../../assets/styles/index.css";
 
 const ContactLoggedIn = () => {
-  const [inputValue, setInputValue] = useState("");
+  const [name, setName] = useState("");
+  const [message, setMessage] = useState("");
+  const [submitted, setSubmitted] = useState(false);
 
-  const handleChange = (event) => {
-    setInputValue(event.target.value);
+  const handleMessage = (event) => {
+    const inputText = event.target.value;
+    const words = inputText.trim().split(/\s+/);
+    if (words.length <= 1000) {
+      setMessage(inputText);
+    }
   };
+
+  const onSubmit = (e) => {
+    e.preventDefault();
+    if (name && message) {
+      setName("");
+      setMessage("");
+      setSubmitted(true);
+    }
+  };
+
+  useEffect(() => {
+    if (submitted) {
+      const timer = setTimeout(() => {
+        setSubmitted(false);
+      }, 5000);
+
+      return () => clearTimeout(timer);
+    }
+  }, [submitted]);
+
+  if (submitted) {
+    return (
+      <div className="submitted">
+        Thanks for reaching out to us! <br /> We will get back to you as soon as
+        possible
+      </div>
+    );
+  }
 
   return (
     <div className="contact">
@@ -23,15 +57,22 @@ const ContactLoggedIn = () => {
                 <div className="section-5">
                   <div className="section-7">
                     <h2>Your Name</h2>
-                    <input type="text" placeholder="Enter your Name" />
+                    <input
+                      value={name}
+                      onChange={(e) => {
+                        setName(e.target.value);
+                      }}
+                      type="text"
+                      placeholder="Enter your Name"
+                    />
                   </div>
                   <div className="section-7">
                     <h2>
                       What would you like to ask? <span>*</span>
                     </h2>
                     <textarea
-                      value={inputValue}
-                      onChange={handleChange}
+                      value={message}
+                      onChange={handleMessage}
                       placeholder="Write here..."
                       required
                     />
@@ -39,8 +80,14 @@ const ContactLoggedIn = () => {
                 </div>
                 <div className="section-6">
                   <button
+                    onClick={onSubmit}
+                    type="submit"
                     style={{
-                      cursor: inputValue ? "pointer" : "not-allowed",
+                      cursor: name && message ? "pointer" : "not-allowed",
+                      backgroundColor:
+                        name && message
+                          ? "rgba(15, 15, 15, 1)"
+                          : "rgba(15, 15, 15, 0.6)",
                     }}
                   >
                     Submit

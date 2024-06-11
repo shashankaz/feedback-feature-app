@@ -24,7 +24,12 @@ import {
   showContactForm,
 } from "../redux/uiSlice";
 
-const FabSmall = () => {
+const FabSmall = ({
+  issueValidate,
+  feedbackValidate,
+  suggestionValidate,
+  contactValidate,
+}) => {
   const {
     open,
     navVertical,
@@ -65,54 +70,62 @@ const FabSmall = () => {
       <div className="main-small">
         {navVertical && (
           <div className="vertical-small">
-            <div
-              id="issue-small"
-              onClick={() => {
-                handleVertical();
-                handleIssueForm();
-              }}
-            >
-              <p>Report an Issue</p>
-              <button>
-                <img src={issueSmall} alt="" />
-              </button>
-            </div>
-            <div
-              id="feedback-small"
-              onClick={() => {
-                handleVertical();
-                handleFeedbackForm();
-              }}
-            >
-              <p>Share Feedback</p>
-              <button>
-                <img src={feedbackSmall} alt="" />
-              </button>
-            </div>
-            <div
-              id="suggestion-small"
-              onClick={() => {
-                handleVertical();
-                handleSuggestionForm();
-              }}
-            >
-              <p>Give Suggestion</p>
-              <button>
-                <img src={suggestionSmall} alt="" />
-              </button>
-            </div>
-            <div
-              id="contact-small"
-              onClick={() => {
-                handleVertical();
-                handleContactForm();
-              }}
-            >
-              <p>Contact Us</p>
-              <button>
-                <img src={contactSmall} alt="" />
-              </button>
-            </div>
+            {issueValidate && (
+              <div
+                id="issue-small"
+                onClick={() => {
+                  handleVertical();
+                  handleIssueForm();
+                }}
+              >
+                <p>Report an Issue</p>
+                <button>
+                  <img src={issueSmall} alt="" />
+                </button>
+              </div>
+            )}
+            {feedbackValidate && (
+              <div
+                id="feedback-small"
+                onClick={() => {
+                  handleVertical();
+                  handleFeedbackForm();
+                }}
+              >
+                <p>Share Feedback</p>
+                <button>
+                  <img src={feedbackSmall} alt="" />
+                </button>
+              </div>
+            )}
+            {suggestionValidate && (
+              <div
+                id="suggestion-small"
+                onClick={() => {
+                  handleVertical();
+                  handleSuggestionForm();
+                }}
+              >
+                <p>Give Suggestion</p>
+                <button>
+                  <img src={suggestionSmall} alt="" />
+                </button>
+              </div>
+            )}
+            {contactValidate && (
+              <div
+                id="contact-small"
+                onClick={() => {
+                  handleVertical();
+                  handleContactForm();
+                }}
+              >
+                <p>Contact Us</p>
+                <button>
+                  <img src={contactSmall} alt="" />
+                </button>
+              </div>
+            )}
           </div>
         )}
         <div className="section-av-small">
@@ -132,7 +145,11 @@ const FabSmall = () => {
         <div className="btn-small">
           <button className="fab-small" onClick={handleAction}>
             {open ? (
-              <img src={closeActionSmall} alt="" />
+              navVertical ? (
+                <img src={closeActionSmall} alt="" />
+              ) : (
+                ""
+              )
             ) : (
               <img src={actionSmall} alt="" />
             )}

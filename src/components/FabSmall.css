@@ -57,6 +57,7 @@
   justify-content: end;
   cursor: pointer;
   animation: translateYAnimation 0.5s ease-out;
+  text-shadow: 4px 2px 8px rgba(0, 0, 0, 0.24);
 }
 
 #feedback-small {
@@ -66,6 +67,7 @@
   justify-content: end;
   cursor: pointer;
   animation: translateYAnimation 0.5s ease-out;
+  text-shadow: 4px 2px 8px rgba(0, 0, 0, 0.24);
 }
 
 #suggestion-small {
@@ -75,6 +77,7 @@
   justify-content: end;
   cursor: pointer;
   animation: translateYAnimation 0.5s ease-out;
+  text-shadow: 4px 2px 8px rgba(0, 0, 0, 0.24);
 }
 
 #contact-small {
@@ -84,6 +87,7 @@
   justify-content: end;
   cursor: pointer;
   animation: translateYAnimation 0.5s ease-out;
+  text-shadow: 4px 2px 8px rgba(0, 0, 0, 0.24);
 }
 
 p {
