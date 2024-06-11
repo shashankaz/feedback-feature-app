@@ -16,6 +16,7 @@ const App = () => {
     <div>
       <div className={`main-body ${open ? "overlay" : ""}`}>
         <Navbar />
+        <section>Feedback Feature App</section>
       </div>
       <Fab
         issueValidate={issue}
