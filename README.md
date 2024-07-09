@@ -61,5 +61,3 @@ The Feedback Feature App serves as a central hub for users to connect with stake
    ```bash
    npm start
    ```
-
----
